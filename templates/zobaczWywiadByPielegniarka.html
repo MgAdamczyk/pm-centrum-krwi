@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+    
+    <a type="button" class="btn btn-secondary p-2 pl-4 pr-4 mx-auto" href="/rejestracjePielegniarki" onclick="">Powrót</a>
+    
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 mx-auto">
+
+            <form action="/zobaczWywiadByPielegniarka/{{wywiad['id_wywiadu']}}" method="POST">
+
+                <div class="form-group">
+                    <label><b>Wzrost:</b></label><br>
+                    <input type="text" class="form-control" name="wzrost" value="{{wywiad['wzrost']}}" readonly>
+                    <label><b>Waga:</b></label><br>
+                    <input type="text" class="form-control" name="waga" value="{{wywiad['waga']}}" readonly>
+                    <label><b>Temperatura ciała:</b></label><br>
+                    <input type="text" class="form-control" name="temperatura" value="{{wywiad['temperatura']}}" readonly>
+                    <label><b>Ciśnienie krwi:</b></label><br>
+                    <input type="text" class="form-control" name="cisnienie" value="{{wywiad['cisnienie']}}" readonly>
+                    <label><b>Tętno:</b></label><br>
+                    <input type="text" class="form-control" name="tetno" value="{{wywiad['tetno']}}" readonly>
+                    <label><b>Ocena stanu węzłów chłonnych:</b></label><br>
+                    <input type="textarea" class="form-control" name="wezly_chlonne" value="{{wywiad['wezly_chlonne']}}" readonly>
+                    <label><b>Ocena wyglądu skóry w miejscu potencjalnego pobrania krwi:</b></label><br>
+                    <input type="textarea" class="form-control" name="skora" value="{{wywiad['skora']}}" readonly>
+                    <label><b>Dodatkowe uwagi:</b></label><br>
+                    <input type="textarea" class="form-control" name="uwagi" value="{{wywiad['uwagi']}}" readonly>
+                </div>
+
+                <div class="col-md-12">
+                    <h5>Czy wyrażasz zgodę na pobranie krwi od kandydata?</h5>
+                        {% if wywiad['akceptacja'] == "TAK" %}
+                        <h6 class="decision-format">TAK</h6>
+                        {% else %}
+                        <h6 class="decision-format">NIE</h6>                        
+                        {% endif %}
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

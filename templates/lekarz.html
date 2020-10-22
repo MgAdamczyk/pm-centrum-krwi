@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+    <div>
+        <h5>Sprawdź ustawienia konta <a class="btn btn-danger" href="/ustawieniaLekarza" role="button">Ustawienia</a></h5><br>
+    </div>
+    {% if wizyty|length < 1 %}
+    <div>Nie masz żadnych rejestracji na dziś w {{miejsce}}</div>
+    {% else %}
+    <div><h5>Rejestracje na dzień {{data}} w {{miejsce}}</h5><div>
+    <table id="display-table">
+        <tr>
+            <th>PESEL</th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Data</th>
+            <th>Godzina</th>
+            <th>Akcje</th>
+        </tr>
+        {% for wizyta in wizyty %}
+            <tr>
+                <td>
+                    {{wizyta['pesel']}}
+                </td>
+                <td>
+                    {{wizyta['imie']}}
+                </td>
+                <td>
+                    {{wizyta['nazwisko']}}
+                </td>
+                <td>
+                    {{wizyta['data']}}
+                </td>
+                <td>
+                    {{wizyta['godzina']}}
+                </td>
+                <td>
+                    <a class="btn btn-secondary mt-2 mb-2" href="/wynikiAnkiety/{{wizyta['id_ankiety']}}" role="button">Zobacz ankietę</a>
+                    {% if wizyta['id_badania'] != None %}
+                        {% if wizyta['id_wywiadu'] == None %}
+                        <a class="btn btn-danger" href="/wywiad/{{wizyta['id_wizyty']}}" role="button">Wprowadź wywiad</a>
+                        {% else %}
+                        <a class="btn btn-secondary" href="/zobaczWywiad/{{wizyta['id_wywiadu']}}" role="button">Zobacz wywiad</a>
+                        {% endif %}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+
+{% endblock %}

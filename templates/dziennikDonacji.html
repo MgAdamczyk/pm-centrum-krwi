@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+
+    <a type="button" href="/dawca" class="btn btn-secondary mb-3 p-2 pl-4 pr-4 mx-auto">Powrót</a>
+
+    <div class="row">
+        <div class="col-md-12 col-md-offset-3 mx-auto">
+            
+            {% if dziennik|length > 0 %}
+            <h4>Twoja historia donacji</h4>
+
+            <table id="display-table">
+                <tr>
+                    <th>Data/godzina</th>
+                    <th>Punkt poboru krwi</th>
+                    <th>Rodzaj pobrania</th>
+                    <th>Ilość [ml]</th>
+                    <th>Powiązane z donacją badania</th>
+                </tr>
+                {% for dz in dziennik %}
+                <tr>
+                    <td>
+                        {{dz['data']}}<br>
+                        {{dz['godz_donacji']}}   
+                    </td>
+                    <td>
+                        {{dz['nazwa']}}
+                    </td>
+                    <td>
+                        {{dz['rodzaj_pobrania']}}
+                    </td>
+                    <td>
+                        {{dz['ilosc']}}
+                    </td>
+                    <td>
+                        <a class="btn btn-danger mt-1 mb-1" href="/dziennikWywiad/{{dz['id_wizyty']}}" role="button">Wywiad</a>
+                        <a class="btn btn-danger mt-1 mb-1" href="/dziennikWyniki/{{dz['id_badania']}}" role="button">Wyniki badań</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% else %}
+            <h4>Twoja historia donacji jest pusta</h4>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 mx-auto">
+            <h6 class="border-text">Wynik badania hemoglobiny: {{hb}}</h6>
+
+            <form action="/wywiad/{{idWizyty}}" method="POST">
+
+                <h3>Wprowadź podstawowe parametry dawcy</h3>
+    
+                <div class="form-group">
+                    <label><b>Wzrost:</b></label><br>
+                    <input type="text" class="form-control" name="wzrost" placeholder="Wzrost cm" required>
+                    <label><b>Waga:</b></label><br>
+                    <input type="text" class="form-control" name="waga" placeholder="Waga kg" required>
+                    <label><b>Temperatura ciała:</b></label><br>
+                    <input type="text" class="form-control" name="temperatura" placeholder="Temperatura °C" required>
+                    <label><b>Ciśnienie krwi:</b></label><br>
+                    <input type="text" class="form-control" name="cisnienie" placeholder="Ciśnienie mm Hg" required>
+                    <label><b>Tętno:</b></label><br>
+                    <input type="text" class="form-control" name="tetno" placeholder="Tętno uderzenia/min" required>
+                    <label><b>Ocena stanu węzłów chłonnych:</b></label><br>
+                    <input type="textarea" class="form-control" name="wezly_chlonne" placeholder="Węzły chłonne" required>
+                    <label><b>Ocena wyglądu skóry w miejscu potencjalnego pobrania krwi:</b></label><br>
+                    <input type="textarea" class="form-control" name="skora" placeholder="Skóra" required>
+                    <label><b>Dodatkowe uwagi:</b></label><br>
+                    <input type="textarea" class="form-control" name="uwagi" placeholder="Uwagi">
+                </div>
+
+                <div class="col-md-12">
+                    <h5>Czy wyrażasz zgodę na pobranie krwi od kandydata?</h5>
+                        <label class="btn btn-danger"><input type="radio" name="akceptacja" value="TAK" > TAK </label>
+                        <label class="btn btn-secondary"><input type="radio" name="akceptacja" value="NIE" > NIE </label>
+                </div><br>
+    
+                    <button type="submit" class="btn btn-danger mb-2 p-2" style="width: 100%;">Zapisz</button>
+                    <a type="button" class="btn btn-secondary mb-2 p-2" href="/panel" style="width: 100%;" onclick="">Anuluj</a>
+                
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+    <div class="row">
+        <div class="col-md-6">
+            <form action="/ustawieniaPielegniarki" method="POST">
+                <h3>Ustawienia konta</h3>
+                
+                <div class="form-group">
+                    <label>PESEL:</label>
+                    <input type="text" class="form-control" name="pesel" value="{{dane['pesel']}}" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label>Nr PWZ:</label>
+                    <input type="text" class="form-control" name="nr_pwzp" value="{{dane['nr_pwzp']}}" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label>Hasło:</label>
+                    <input type="password" class="form-control" name="haslo" placeholder="Wpisz nowe hasło">
+                </div>
+
+                <div class="form-group">
+                    <label>Imię:</label>
+                    <input type="text" class="form-control" name="imie" value="{{dane['imie']}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Drugie imię:</label>
+                    <input type="text" class="form-control" name="imie2" value="{{dane['drugie_imie']}}">
+                </div>
+
+                <div class="form-group">
+                    <label>Nazwisko:</label>
+                    <input type="text" class="form-control" name="nazwisko" value="{{dane['nazwisko']}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Data urodzenia:</label>
+                    <input type="date" class="form-control" name="data_ur" value="{{dane['data_urodzenia']}}" required> 
+                </div>
+
+
+                <div class="form-group">
+                    <label>Adres:</label>
+                    <input type="text" class="form-control" name="adres" value="{{dane['adres']}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Telefon kontaktowy:</label>
+                    <input type="tel" class="form-control" name="tel" value="{{dane['telefon']}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" class="form-control" name="email" value="{{dane['email']}}" required>
+                </div>
+
+
+                <div class="form-group">
+                    <a class="btn btn-secondary" href="/panel" onclick="">Anuluj</a>
+                    <button type="submit" class="btn btn-danger" onclick="">Zapisz</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,167 @@
+body, html {
+    font-family: sans-serif;
+}
+
+table, td, th {
+    border: 2px solid #aaa;
+}
+
+#display-table {
+    border: solid 3px #aaa;
+    width: 100%;
+}
+
+td {
+    text-align: center;
+    padding: 4px 15px 4px 15px;
+}
+
+tr {
+    height: 40px;
+    text-align: center;
+    font-size: 22px;
+}
+
+#title {
+    font-size: 45px;
+    text-decoration: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-variant: small-caps;
+    color: white;
+}
+
+.margin-under-nav {
+    margin-top: 125px;
+}
+
+.bg-mainbar {
+    background-color: crimson;
+    font-size: 20px;
+}
+
+.next-element {
+    margin-left: 15px;
+    margin-top: 10px;
+    color: white;
+}
+
+.border-ankieta{
+    border: 2px solid gray;
+    border-radius: 15px;
+    padding: 7px;
+}
+
+.border-text{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 7px;
+}
+
+.border-gui{
+    border: 1px solid;
+    border-color:  gray;
+    border-radius: 5px;
+    padding: 7px;
+}
+
+.padding-all {
+    padding: 2%;
+}
+
+.decision-format{
+    background-color: crimson; 
+    color: white; 
+    width: fit-content; 
+    padding: 1%;
+}
+
+.text-highlighted{
+    text-align: center; 
+    color: darkred;
+}
+
+.jumbotron {
+    background-image: url('../img/krwiodawca.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 20vh;
+}
+
+.border-main{
+    border: 1px solid;
+    border-color:  lightgray;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: whitesmoke;
+    color: crimson;
+}
+
+.text-title{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-variant: small-caps;
+}
+
+.container{
+    max-width: 100%;
+    min-width: 100%;
+}
+
+.text-card{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: crimson;
+    text-align: center;
+}
+
+.text-item-main{
+    font-size: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+}
+
+.card{
+    padding: 1%;
+}
+
+.text-item{
+    text-align: center;
+}
+
+.border-card{
+    border: 1px solid;
+    border-color:  lightgray;
+    border-radius: 5px;
+    padding: 1px;
+    background-color: whitesmoke;
+    color: crimson;
+}
+
+.bold-card{
+    background-color: crimson; 
+    color: white; 
+    width: fit-content; 
+    padding: 1%;
+    line-height: 2;
+}
+
+.footer{
+    background-color: crimson; 
+    color: white; 
+    font-size: 12px;
+    width: 100%; 
+    padding: 10px;
+}
+
+#footer-align-right{
+    text-align: right;
+}
+
+.a:hover {
+    color: gray;
+    border-bottom: 0px solid gray;
+}
+
+.announcement{
+    color: red;
+    margin: 3px;
+}

@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+        <section class="container">
+            <div class="row">
+                <div class="col-12 col-md-4 mb-3 p-2">
+                    <div class="border-gui mx-auto text-center">
+                        <div>
+                            <h5>Zaplanuj kolejną donację</h5>
+                        </div>
+                        <div>
+                            <a class="btn btn-danger" href="/rejestracje" role="button">Rejestracja</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mb-3 p-2">
+                    <div class="border-gui mx-auto text-center">
+                        <div>
+                            <h5>Przeglądaj swoją historię donacji</h5>
+                        </div>
+                        <div>
+                            <a class="btn btn-danger" href="/dziennikDonacji" role="button">Dziennik donacji</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mb-3 p-2">
+                    <div class="border-gui mx-auto text-center">
+                        <div>
+                            <h5>Sprawdź ustawienia konta</h5>
+                        </div>
+                        <div>
+                            <a class="btn btn-danger" href="/ustawieniaDawcy" role="button">Ustawienia</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="row border-gui mb-3">
+                <div class="col-12 col-md-4 mr-1 mx-auto text-center border-gui">
+                    <i class="fa fa-calendar fa-2x" style="color: gray;"></i>
+                    <h4>Ostatnia donacja:</h4>
+                    <h5>{{dataOstatnia}}</h5>
+                    <h5>{{rodzajOstatnia}}</h5>
+                    <h5>{{iloscOstatnia}} ml</h5>
+                </div>
+                <div class="col-12 col-md-3 mx-auto my-auto text-center border-gui">
+                    <i class="fa fa-shield fa-2x" style="color: gray;"></i>
+                    <h5>Przysługuje Ci tytuł:</h5>
+                    <h4 class="text-highlighted"><i>{{tytul}}</i></h4>
+                </div>
+                <div class="col-12 col-md-4 mr-1 mx-auto text-center border-gui">
+                    <i class="fa fa-tint fa-2x" style="color: gray;"></i>
+                    <h4>Ilość oddanej krwi i jej składników</h4><h5>(w przeliczeniu na krew pełną):</h5>
+                    <h4 class="text-highlighted border-text">{{KP}} ml</h4>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h4 class="text-highlighted"><b>Sprawdź, kiedy możesz oddać krew</b></h4>
+            <div class="row">
+                <div class="col-12 col-md-2 mt-2 text-center">
+                    <i class="fa fa-tint fa-2x" style="color: crimson;"></i>
+                    <h6><b>Krew pełna</b></h6>
+                    <h6>{{kolejneDonacje['Krew pełna']}}</h6>
+                </div>
+                <div class="col-12 col-md-2 mt-2 text-center">
+                    <i class="fa fa-tint fa-2x" style="color: tan;"></i>
+                    <h6><b>Osocze</b></h6>
+                    <h6>{{kolejneDonacje['Osocze']}}</h6>
+                </div>
+                <div class="col-12 col-md-2 mt-2 text-center">
+                    <i class="fa fa-tint fa-2x" style="color: #ffbb99;"></i>
+                    <h6><b>Krwinki białe</b></h6>
+                    <h6>{{kolejneDonacje['Krwinki białe']}}</h6>
+                </div>
+                <div class="col-12 col-md-2 mt-2 text-center">
+                    <i class="fa fa-tint fa-2x" style="color: #662200;"></i>
+                    <h6><b>Płytki krwi</b></h6>
+                    <h6>{{kolejneDonacje['Płytki krwi']}}</h6>
+                </div>
+                <div class="col-12 col-md-2 mt-2 text-center">
+                    <i class="fa fa-tint fa-2x" style="color: darkred;"></i>
+                    <h6><b>Krwinki czerwone 1j.</b></h6>
+                    <h6>{{kolejneDonacje['Krwinki czerwone 1j.']}}</h6>
+                </div>
+                <div class="col-12 col-md-2 mt-2 text-center">
+                    <i class="fa fa-tint fa-2x" style="color: darkred;"></i>
+                    <h6><b>Krwinki czerwone 2j.</b></h6>
+                    <h6>{{kolejneDonacje['Krwinki czerwone 2j.']}}</h6>
+                </div>
+            </div>
+        </section>   
+</div>
+{% endblock %}

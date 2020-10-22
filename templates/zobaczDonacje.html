@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+
+    <a type=button class="btn btn-secondary mb-2 p-2 pl-4 pr-4 mx-auto" href="/rejestracjePielegniarki" onclick="">Powrót</a>
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="/zobaczDonacje/{{idWizyty}}" method="POST">
+                <h3>Informacje o wykonanej donacji</h3>
+
+                <div class="form-group">
+                    <label><b>Numer donacji:</b></label><br>
+                    <input type="text" class="form-control" name="id_donacji" value="{{donacja['id_donacji']}}" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label><b>Godzina donacji:</b></label><br>
+                    <input type="text" class="form-control" name="godz_donacji" value="{{donacja['godz_donacji']}}" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label><b>Rodzaj donacji:</b></label><br>
+                    <input type="text" class="form-control" name="rodzaj_pobrania" value="{{donacja['rodzaj_pobrania']}}" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label><b>Ilość pobranego materiału [ml]:</b></label><br>
+                    <input type="text" class="form-control" name="ilosc" value="{{donacja['ilosc']}}" readonly>
+                </div>
+
+                <h5>Dostępność krwi lub jej składnika w placówce: <label class="decision-format">{{donacja['dostepnosc']}}</label></h5>
+                
+                {% if donacja['dostepnosc'] != "NIE" %}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger">Przekaż donację</button>
+                </div>
+                {% endif %}
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

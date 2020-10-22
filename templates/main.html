@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav">
+        <div class="announcement">{{info}}</div>
+        <section class="jumbotron jumbotron-fluid">
+                <div class="container">
+                        <div class="row">
+                                <h3 class="border-main text-title">Witaj w systemie <b>Centrum Krwi</b></h3>
+                        </div>
+                </div>
+        </section>
+</div>
+<div class="padding-all">
+        <section class="container">
+                <div class="row">
+                        <div class="col-12 col-md-4">
+                                <div class="card text-card">
+                                        <h2>Twoja krew może uratować ludzkie życie!</h2>
+                                        <img src="/static/img/heart-care.png" width=100% height="240" alt="">
+                                </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                                <div class="card">
+                                        <h2 class="text-card">Centrum Krwi</h2>
+                                        <p class="text-item-main">System wspierający rejestrację oraz przechowywanie danych krwiodawców i&nbsp;informacji o wykonanych donacjach</p>
+                                        <h5 class="text-item"><b>Z systemem Centrum Krwi:</b></h5>
+                                        <div class="card-body border-card">
+                                                <p class="card-text">Zarejestrujesz się do wybranego punktu poboru krwi i zdalnie wypełnisz kwestionariusz.</p>
+                                                </div>
+                                        <div class="card-body border-card">
+                                                <p class="card-text">W jednym miejscu przeglądniesz dziennik swoich donacji i zobaczysz wyniki badań.</p>
+                                        </div>
+                                        <div class="card-body border-card">
+                                               <p class="card-text">Sprawdzisz, jaki tytuł Honorowego Krwiodawcy Ci przysługuje.</p>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                                <div class="card text-card">
+                                        <h3>Jeśli:<br> masz ukończone 18 lat<br> i jesteś zdrowy,<br> <a class="a" href="/register"><b class="bold-card">ZAREJESTRUJ SIĘ</b></a><br> i dołącz do grona <b class="bold-card">KRWIODAWCÓW!</b></h3>
+                                </div>
+                        </div>
+                </div>
+        </section>
+</div>
+<footer class="container footer">
+        <div class="row">
+                <div class="col-6">
+                        Projekt aplikacji webowej wykonany w ramach pracy magisterskiej
+                </div>
+                <div class="col-6" id="footer-align-right">
+                        Małgorzata Adamczyk, Inżynieria Biomedyczna AGH, Kraków 2020
+                </div>
+        </div>
+</footer>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="/dodajDonacje/{{idWizyty}}" method="POST">
+                <h3>Nowa donacja dla {{pesel}}</h3>
+                
+
+                <div class="form-group">
+                    <label><b>Godzina wykonanej donacji:</b></label><br>
+                    <input type="text" class="form-control" name="godz_donacji" placeholder="00:00" required>
+                </div>
+
+                <label for="rodzaj_pobrania"><b>Wybierz rodzaj donacji:</b></label>
+                        <select name="rodzaj_pobrania" id="rodzaj_pobrania">
+                            {% for pb in pobrania %}
+                            <option value="{{pb['rodzaj_pobrania']}}">{{pb['rodzaj_pobrania']}}</option>
+                            {% endfor %}
+                        </select>
+
+                <div class="form-group">
+                    <label><b>Ilość pobranego materiału [ml]:</b></label><br>
+                    <input type="text" class="form-control" name="ilosc" placeholder="000" required>
+                </div>
+
+
+                <div class="form-group">
+                    <a type=button class="btn btn-secondary" href="/rejestracjePielegniarki" onclick="">Anuluj</a>
+                    <button type="submit" class="btn btn-danger">Zarejestruj donację</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

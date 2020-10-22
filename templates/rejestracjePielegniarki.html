@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+    <a type="button" class="btn btn-secondary p-2 pl-4 pr-4 mx-auto" href="/panel">Powrót</a>
+    <div>
+        <form action="/rejestracjePielegniarki" method="POST">
+            <div class="form-group">
+                <label><b>Wyszukaj wizyty - wpisz datę lub PESEL</b></label>
+                <input type="date" name="wyszukaj_data"> / 
+                <input type="text" name="wyszukaj_pesel" placeholder="PESEL">
+                <button type="submit" class="btn btn-danger">Wyszukaj</button>
+        </form>
+    </div>
+
+    {% if czyPost %}
+
+        {% if wizyty|length < 1 %}
+            {% if czyPesel %}
+                <div>Szukany dawca nie odbył jeszcze żadnych wizyt w Twojej placówce oraz nie posiada aktualnych rejestracji.</div>
+            {% else %}
+                <div>Nie zaplanowano żadnych wizyt w wybranym dniu.</div>
+            {% endif %}
+        {% else %}
+            {% if czyPesel %}
+                <div>Wizyty dawcy: {{wizyty[0]['imie']}} {{wizyty[0]['nazwisko']}} {{wizyty[0]['pesel']}}</div>
+            {% else %}
+                <div>Wizyty z dnia {{wizyty[0]['data']}}</div>
+            {% endif %}
+        
+            <table id="display-table">
+                <tr>
+                    {% if czyPesel %}
+                    <th>Data</th>
+                    {% else %}
+                    <th>PESEL</th>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    {% endif %}
+                    <th>Godzina</th>
+                    <th>Akcje</th>
+                </tr>
+                {% for wizyta in wizyty %}
+                    <tr>
+                        {% if czyPesel %}
+                        <td>
+                            {{wizyta['data']}}
+                        </td>
+                        {% else %}
+                        <td>
+                            {{wizyta['pesel']}}
+                        </td>
+                        <td>
+                            {{wizyta['imie']}}
+                        </td>
+                        <td>
+                            {{wizyta['nazwisko']}}
+                        </td>
+                        {% endif %}
+                        <td>
+                            {{wizyta['godzina']}}
+                        </td>
+                        <td>
+                            {% if not wizyta['id_wywiadu'] %}
+                            <a class="btn btn-danger mt-1 mb-1" href="/usunRejestracjePielegniarki/{{wizyta['id_wizyty']}}" role="button">Usuń wizytę</a>
+                            {% endif %}
+
+                            {% if not wizyta['id_ankiety'] %}
+                            <a class="btn btn-danger mt-1 mb-1" href="/dodajAnkiete/{{wizyta['id_wizyty']}}" role="button">Dodaj ankietę</a>
+                            {% else %}
+                            <a class="btn btn-secondary mt-1 mb-1" href="/wynikiAnkiety/{{wizyta['id_ankiety']}}" role="button">Zobacz ankietę</a>
+                            {% endif %}
+                            
+                            {% if wizyta['id_wywiadu'] %}
+                            <a class="btn btn-secondary mt-1 mb-1" href="/zobaczWywiadByPielegniarka/{{wizyta['id_wywiadu']}}" role="button">Zobacz wywiad</a>
+                            {% endif %}
+                            
+                            {% if wizyta['id_wywiadu'] and wizyta['akceptacja'] != "NIE" and not wizyta['id_donacji'] %}
+                            <a class="btn btn-danger mt-1 mb-1" href="/dodajDonacje/{{wizyta['id_wizyty']}}" role="button">Dodaj donację</a>
+                            {% elif wizyta['id_donacji'] %}
+                            <a class="btn btn-secondary mt-1 mb-1" href="/zobaczDonacje/{{wizyta['id_wizyty']}}" role="button">Zobacz donację</a>
+                            {% endif %}
+                            
+                            {% if wizyta['id_ankiety'] and not wizyta['id_badania'] %}
+                            <a class="btn btn-danger mt-1 mb-1" href="/dodajBadanie/{{wizyta['id_wizyty']}}" role="button">Dodaj wyniki badań</a>
+                            {% elif wizyta['id_badania'] %}
+                            <a class="btn btn-danger mt-1 mb-1" href="/dodajBadanie/{{wizyta['id_wizyty']}}" role="button">Wyniki badań</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

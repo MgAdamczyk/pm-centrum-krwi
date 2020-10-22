@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/adminPopups.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+        <div>
+            <h5>Sprawdź ustawienia konta <a class="btn btn-secondary" href="/ustawieniaAdmina" role="button">Ustawienia</a></h5><br>
+        </div>
+        <a class="btn btn-danger mb-1" href="#" role="button" onclick="openPlacowka()">Dodaj nową placówkę</a>
+        <a class="btn btn-danger mb-1" href="#" role="button" onclick="openLekarz()">Dodaj nowego lekarza</a>
+        <a class="btn btn-danger mb-1" href="#" role="button" onclick="openPielegniarka()">Dodaj nową pielęgniarkę</a>
+        <a class="btn btn-danger mb-1" href="#" role="button" onclick="openAdmin()">Dodaj nowego administratora</a>
+
+        <div class="announcement">{{komunikat}}</div>
+
+        <div class="form-popup" id="popFormPlacowka">
+            <form action="/adminDodajePlacowke" method="POST" class="form-container">
+              <h1>Rejestracja nowej placówki w systemie</h1>
+          
+              <label><b>Nazwa placówki:</b></label>
+              <input type="text" placeholder="Wprowadź nazwę" name="nazwa_pl" required>
+          
+              <label><b>Adres placówki:</b></label>
+              <input type="text" placeholder="Wprowadź adres" name="adres_pl" required>
+          
+              <button type="submit" class="btn">Dodaj placówkę</button>
+              <button type="button" class="btn cancel" onclick="closeFormPlacowka()">Anuluj</button>
+            </form>
+        </div>
+
+        <div class="form-popup" id="popFormLekarz">
+            <form action="/adminDodajeLekarza" method="POST" class="form-container">
+              <h1>Rejestracja nowego lekarza w systemie</h1>
+
+              <label><b>PESEL:</b></label>
+              <input type="text" placeholder="11-cyfrowy numer pesel" name="pesel" required>
+
+              <label><b>Nr PWZ:</b></label>
+              <input type="text" placeholder="Wprowadź numer PWZ" name="nr_pwzl" required>
+
+              <label><b>Imię:</b></label>
+              <input type="text" placeholder="Wprowadź imię" name="imie" required>
+
+              <label><b>Drugie imię:</b></label>
+              <input type="text" placeholder="Wprowadź drugie imię" name="imie2">
+
+              <label><b>Nazwisko:</b></label>
+              <input type="text" placeholder="Wprowadź nazwisko" name="nazwisko" required>
+
+              <label><b>Data urodzenia:</b></label>
+              <input type="date" class="form-control" name="data_ur" required>
+
+              <label><b>Adres:</b></label>
+              <input type="text" placeholder="Wprowadź adres" name="adres" required>
+            
+            <p>
+              <label><b>Telefon:</b></label><br>
+              <input type="tel" placeholder="123 456 789" name="tel" required>
+            </p>
+
+              <label><b>Specjalizacja:</b></label>
+              <input type="text" placeholder="Wprowadź specjalizację" name="spec">
+
+              <label><b>Hasło:</b></label>
+              <input type="password" placeholder="Wprowadź hasło" name="haslo" required>
+
+            <p>  
+              <label><b>Email:</b></label><br>
+              <input type="email" placeholder="Wprowadź adres email" name="email" required>
+            </p>
+
+              <label for="placowka">Wybierz placówkę:</label>
+                    <select name="placowka" id="placowka">
+                        {% for pl in placowki %}
+                        <option value="{{pl['nazwa']}}">{{pl['nazwa']}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <br>
+              <button type="submit" class="btn">Dodaj lekarza</button>
+              <button type="button" class="btn cancel" onclick="closeFormLekarz()">Anuluj</button>
+            </form>
+        </div>
+
+        <div class="form-popup" id="popFormPielegniarka">
+            <form action="/adminDodajePielegniarke" method="POST" class="form-container">
+              <h1>Rejestracja nowej pielęgniarki w systemie</h1>
+
+              <label><b>PESEL:</b></label>
+              <input type="text" placeholder="11-cyfrowy numer pesel" name="pesel" required>
+
+              <label><b>Nr PWZ:</b></label>
+              <input type="text" placeholder="Wprowadź numer PWZ" name="nr_pwzp" required>
+
+              <label><b>Imię:</b></label>
+              <input type="text" placeholder="Wprowadź imię" name="imie" required>
+
+              <label><b>Drugie imię:</b></label>
+              <input type="text" placeholder="Wprowadź drugie imię" name="imie2">
+
+              <label><b>Nazwisko:</b></label>
+              <input type="text" placeholder="Wprowadź nazwisko" name="nazwisko" required>
+
+              <label><b>Data urodzenia:</b></label>
+              <input type="date" class="form-control" name="data_ur" required>
+
+              <label><b>Adres:</b></label>
+              <input type="text" placeholder="Wprowadź adres" name="adres" required>
+            
+            <p>
+              <label><b>Telefon:</b></label><br>
+              <input type="tel" placeholder="123 456 789" name="tel" required>
+            </p>
+
+              <label><b>Hasło:</b></label>
+              <input type="password" placeholder="Wprowadź hasło" name="haslo" required>
+
+            <p>  
+              <label><b>Email:</b></label><br>
+              <input type="email" placeholder="Wprowadź adres email" name="email" required>
+            </p>
+
+              <label for="placowka">Wybierz placówkę:</label>
+                    <select name="placowka" id="placowka">
+                        {% for pl in placowki %}
+                        <option value="{{pl['nazwa']}}">{{pl['nazwa']}}</option>
+                        {% endfor %}
+                    </select>
+
+                    <br>
+              <button type="submit" class="btn">Dodaj pielęgniarkę</button>
+              <button type="button" class="btn cancel" onclick="closeFormPielegniarka()">Anuluj</button>
+            </form>
+        </div>
+
+        <div class="form-popup" id="popFormAdmin">
+            <form action="/adminDodajeAdmina" method="POST" class="form-container">
+              <h1>Dodawanie nowego administratora systemu</h1>
+          
+              <label><b>Login:</b></label>
+              <input type="text" placeholder="Axxxxxxx" name="login" required>
+          
+              <label><b>Hasło:</b></label>
+              <input type="password" placeholder="Wprowadź hasło" name="haslo" required>
+
+              <label><b>Imię:</b></label>
+              <input type="text" placeholder="Wprowadź imię" name="imie" required>
+
+              <label><b>Nazwisko:</b></label>
+              <input type="text" placeholder="Wprowadź nazwisko" name="nazwisko" required>
+          
+              <button type="submit" class="btn">Dodaj administratora</button>
+              <button type="button" class="btn cancel" onclick="closeFormAdmin()">Anuluj</button>
+            </form>
+        </div>
+</div>
+    
+<script>
+    function openPlacowka() {
+      document.getElementById("popFormPlacowka").style.display = "block";
+    }
+
+    function openLekarz() {
+      document.getElementById("popFormLekarz").style.display = "block";
+    }
+
+    function openPielegniarka() {
+      document.getElementById("popFormPielegniarka").style.display = "block";
+    }
+
+    function openAdmin() {
+      document.getElementById("popFormAdmin").style.display = "block";
+    }
+
+    function closeFormPlacowka() {
+        document.getElementById("popFormPlacowka").style.display = "none";
+    }
+
+    function closeFormLekarz() {
+        document.getElementById("popFormLekarz").style.display = "none";
+    }
+
+    function closeFormPielegniarka() {
+        document.getElementById("popFormPielegniarka").style.display = "none";
+    }
+
+    function closeFormAdmin() {
+        document.getElementById("popFormAdmin").style.display = "none";
+    }
+</script>
+{% endblock %}

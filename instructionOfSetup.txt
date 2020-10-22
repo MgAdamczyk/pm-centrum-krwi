@@ -1,0 +1,47 @@
+Aby unikn¹æ instalowania wszystkich bibliotek w u¿ywanym systemie operacyjnym nale¿y wykorzystaæ narzêdzie virtualenv. Tworzy ono œrodowisko wirtualne pozwalaj¹ce na zainstalowanie u¿ywanych pakietów jedynie w jego wnêtrzu. W celu utworzenia wirtualnego œrodowiska nale¿y w terminalu wykonaæ nastêpuj¹ce komendy:
+
+$ pip3 install virtualenv
+$ virtualenv env
+
+gdzie ‘env’ to nazwa œrodowiska.
+
+Nastêpnie aby do niego przejœæ nale¿y wykonaæ komendê:
+$ source env/bin/activate
+
+
+Aby zainstalowaæ potrzebne biblioteki, nale¿y wykonaæ komendê:
+
+$ pip3 install flask bcrypt flask_mysqldb
+
+Je¿eli na komputerze zosta³ zainstalowany python3, aplikacja mo¿e zostaæ uruchomiona lokalnie, po przejœciu do folderu zawieraj¹cego plik ‘app.py’, poprzez wykonanie polecenia:
+
+$ python3 app.py
+
+Aplikacja bêdzie wtedy dostêpna pod adresem: http://localhost:5000/
+
+
+Aby umieœciæ aplikacjê na serwerze heroku, nale¿y mieæ aktywne konto na tym serwerze oraz pliki projektowe wraz z folderem wirtualnego œrodowiska ‘env’ umieœciæ wewn¹trz repozytorium Gitowym. Nastêpnie w terminalu nale¿y wykonaæ poni¿sze operacje.
+
+(env)$ heroku login
+
+Tu mo¿e zaistnieæ potrzeba zalogowania siê do serwisu w przegl¹darce.
+
+Nastêpnie potrzebna jest instalacja pakietu gunicorn oraz zapisanie informacji o wymaganych pakietach w pliku requirements.txt
+(env)$ pip3 install gunicorn
+(env)$ pip3 freeze > requirements.txt
+
+Kolejnym krokiem jest utworzenie pliku Procfile i wpisanie do niego linijki: "web: gunicorn app:app".
+
+(env)$ touch Procfile
+
+Aby w serwisie Heroku utworzyæ now¹ (pust¹) aplikacjê, nale¿y wykonaæ komendê:
+
+(env)$ heroku create app-name
+
+Ostatnim krokiem bêdzie zapisanie wszystkich zmian w repozytorium oraz przes³anie plików na serwer, do czego s³u¿yæ bêd¹ komendy:
+
+(env)$ git add .
+(env)$ git commit -m “Example message”
+(env)$ git push heroku master
+
+W terminalu zostanie wypisany link pozwalaj¹cy na otworzenie aplikacji dostêpnej w internecie.

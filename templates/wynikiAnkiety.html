@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+    
+    <a type="button" href="/rejestracjePielegniarki" class="btn btn-secondary p-2 pl-4 pr-4 mx-auto">Powrót</a>
+
+    <div class="row">
+        <div class="col-md-9 col-md-offset-3 mx-auto">
+            
+            <h5>Ankieta dawcy o numerze pesel: {{pesel}} wypełniona w dniu {{ankieta['data_wyp']}}</h5><br>
+
+            <table id="display-table">
+                <tr>
+                    <th>Pytanie</th>
+                    <th>Udzielona odpowiedź</th>
+                </tr>
+                    <tr>
+                        <td>
+                            1. Czy już oddawał/a Pan/Pani krew?
+                        </td>
+                        <td>
+                            {{ankieta['p1']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            2. Czy czuje się Pan/Pani obecnie zdrowy/a?
+                        </td>
+                        <td>
+                            {{ankieta['p2']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            3. Czy w ciągu ostatnich 7 dni przechodził/a Pan/Pani jakieś zabiegi stomatologiczne?
+                        </td>
+                        <td>
+                            {{ankieta['p3']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            4. Czy w ciągu ostatnich 4 tygodni chorował/a Pan/Pani lub pozostawał/a pod opieką lekarza albo miał/a gorączkę powyżej 38 °C?
+                        </td>
+                        <td>
+                            {{ankieta['p4']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            5. Czy w ciągu ostatnich 4 tygodni przyjmował/a Pan/Pani lekarstwa (tabletki, zastrzyki, czopki)?
+                        </td>
+                        <td>
+                            {{ankieta['p5']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            6. Czy w ciągu ostatnich 3 dni przyjmował/a Pan/Pani lek, którego składnikiem jest kwas acetylosalicylowy (np. aspiryna)?
+                        </td>
+                        <td>
+                            {{ankieta['p6']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            7. Czy w ciągu ostatnich 4 tygodni przechodził/a/ Pan/Pani szczepienia?
+                        </td>
+                        <td>
+                            {{ankieta['p7']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            8. Czy zauważył Pan/Pani u siebie następujące objawy: nieuzasadniony spadek ciężaru ciała, nieuzasadnioną gorączkę lub powiększenie węzłów chłonnych?
+                        </td>
+                        <td>
+                            {{ankieta['p8']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            Czy choruje Pan/Pani bądź chorowała na jedno z niżej wymienionych schorzeń, ewentualnie odczuwa lub odczuwał/a niżej wymienione dolegliwości (pytania 9 - 12)?
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            9. Choroby układu krążenia (nadciśnienie), dolegliwości ze strony serca, zawał serca, duszność, udar mózgu?
+                        </td>
+                        <td>
+                            {{ankieta['p9']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            10. Choroby skóry, wypryski / wysypka, uczulenia, katar sienny, astma?
+                        </td>
+                        <td>
+                            {{ankieta['p10']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            11. Cukrzyca, choroby krwi, przedłużenie krwawienia, choroby naczyń krwionośnych, choroby nerek, choroby przewodu pokarmowego, choroby płuc, choroby nerwowe, choroby tarczycy, padaczka, nowotwór?
+                        </td>
+                        <td>
+                            {{ankieta['p11']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            12. Kiła, rzeżączka, toksoplazmoza, bruceloza, gruźlica, mononukleoza zakaźna?
+                        </td>
+                        <td>
+                            {{ankieta['p12']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            13. Czy w ciągu ostatnich 6 miesięcy miał/a Pan/Pani wykonywaną gastroskopię, biopsję lub inne badanie diagnostyczne?
+                        </td>
+                        <td>
+                            {{ankieta['p13']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            14. Czy w ciągu ostatnich 6 miesięcy lub od czasu ostatniego oddania krwi chorował/a Pan/Pani ciężko albo przebył/a poważny zabieg operacyjny lub wypadek?
+                        </td>
+                        <td>
+                            {{ankieta['p14']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            15. Czy kiedykolwiek otrzymał/a Pan/Pani transfuzję krwi?
+                        </td>
+                        <td>
+                            {{ankieta['p15']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            16. Czy kiedykolwiek był/a Pan/Pani biorcą przeszczepu (np. rogówki lub innych tkanek)?
+                        </td>
+                        <td>
+                            {{ankieta['p16']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            17. Czy kiedykolwiek otrzymał/a Pan/Pani hormon wzrostu?
+                        </td>
+                        <td>
+                            {{ankieta['p17']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            18. Czy ktokolwiek z Pana/Pani rodziny cierpi lub cierpiał na chorobę Creutzfeldta-Jakoba?
+                        </td>
+                        <td>
+                            {{ankieta['p18']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            19. Czy w okresie od 1 stycznia 1980 roku do 31 grudnia 1996 roku przebywał/a Pan/Pani łącznie przez okres 6 miesięcy lub dłużej w Wielkiej Brytanii, Francji lub Irlandii?
+                        </td>
+                        <td>
+                            {{ankieta['p19']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            20. Czy w ciągu ostatnich 6 miesięcy przebywał/a Pan/Pani w krajach Afryki Środkowej?
+                        </td>
+                        <td>
+                            {{ankieta['p20']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            21. Czy mieszkał/a Pan/Pani lub przebywał/a czasowo na terenach endemicznego występowania malarii lub innych chorób tropikalnych?
+                        </td>
+                        <td>
+                            {{ankieta['p21']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            22. Czy chorował Pan/Pani na: malarię, inne choroby tropikalne?
+                        </td>
+                        <td>
+                            {{ankieta['p22']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            23. Czy w ciągu ostatnich 28 dni przebywał/a Pan/Pani na terenach, gdzie stwierdzono przypadki przeniesienia Wirusa Zachodniego Nilu na ludzi?
+                        </td>
+                        <td>
+                            {{ankieta['p23']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            24. Czy w ciągu ostatnich 6 miesięcy wykonywano u Pana/Pani: tatuaż, akupunkturę, depilację kosmetyczną, przekłucie uszu lub innych części ciała?
+                        </td>
+                        <td>
+                            {{ankieta['p24']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            25. Czy w ciągu ostatnich 6 miesięcy lub od czasu ostatniego oddania krwi miał/a Pan/Pani przypadkowy kontakt z krwią ludzką lub narzędziami zanieczyszczonymi krwią ludzką?
+                        </td>
+                        <td>
+                            {{ankieta['p25']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            26. Czy kiedykolwiek przechodził/a Pan/Pani żółtaczkę?
+                        </td>
+                        <td>
+                            {{ankieta['p26']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            27. Czy Pana/Pani partner życiowy lub seksualny w ciągu ostatnich 6 miesięcy przechodził żółtaczkę?
+                        </td>
+                        <td>
+                            {{ankieta['p27']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            28. Czy w ciągu ostatnich 12 miesięcy miał/a Pan/Pani kontakt z zakaźnie chorym?
+                        </td>
+                        <td>
+                            {{ankieta['p28']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            29. Czy był/a Pan/Pani narażona na ryzyko zakażenia?
+                        </td>
+                        <td>
+                            {{ankieta['p29']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            30. Czy w ciągu ostatnich 6 miesięcy przebywał/a na Pan/Pani w areszcie lub więzieniu?
+                        </td>
+                        <td>
+                            {{ankieta['p30']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            31. Czy kiedykolwiek zalecono Panu/Pani rezygnację z oddawania krwi?
+                        </td>
+                        <td>
+                            {{ankieta['p31']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            32. Czy wykonuje Pan/Pani niebezpieczną pracę (np. kierowca autobusu, nurek) lub ma niebezpieczne hobby?
+                        </td>
+                        <td>
+                            {{ankieta['p32']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            33. Czy jest Pani obecnie w ciąży lub była w ciąży w ciągu ostatnich 6 miesięcy?
+                        </td>
+                        <td>
+                            {{ankieta['p33']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            34. Czy teraz lub w ciągu ostatnich 3 dni ma / miała Pani miesiączkę?
+                        </td>
+                        <td>
+                            {{ankieta['p34']}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            35. Czy w latach 1965 - 1985 otrzymywała Pani zastrzyki hormonów w celu leczenia niepłodności?
+                        </td>
+                        <td>
+                            {{ankieta['p35']}}
+                        </td>
+                    </tr>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+    <h5>Zasoby krwi i jej składników pobrane w {{nazwaPlacowki}}</h5>
+    <div class="container">
+        <div class="row">
+            <table class="col-sm-4 mt-5 mx-auto">
+                <tr>
+                    <th>Składniki krwi</th>
+                    <th>Ilość [ml]</th>
+                </tr>
+                <tr>
+                    <td>
+                        Osocze
+                    </td>
+                    <td>
+                        {{skladnikiKrwi['Osocze']}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Płytki krwi
+                    </td>
+                    <td>
+                        {{skladnikiKrwi['Płytki krwi']}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Krwinki czerwone
+                    </td>
+                    <td>
+                        {{krwinkiCzerwone}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Krwinki białe
+                    </td>
+                    <td>
+                        {{skladnikiKrwi['Krwinki białe']}}
+                    </td>
+                </tr>
+            </table>
+            <table class="col-sm-4 mx-auto">
+                <tr>
+                    <th>Krew pełna</th>
+                    <th>Ilość [ml]</th>
+                </tr>
+                <tr>
+                    <td>
+                        A Rh+
+                    </td>
+                    <td>
+                        {{krewPelna['A Rh+']}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        A Rh-
+                    </td>
+                    <td>
+                        {{krewPelna['A Rh-']}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        B Rh+
+                    </td>
+                    <td>
+                        {{krewPelna['B Rh+']}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        B Rh-   
+                    </td>
+                    <td>
+                        {{krewPelna['B Rh-']}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        AB Rh+   
+                    </td>
+                    <td>
+                        {{krewPelna['AB Rh+']}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        AB Rh-   
+                    </td>
+                    <td>
+                        {{krewPelna['AB Rh-']}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        0 Rh+   
+                    </td>
+                    <td>
+                        {{krewPelna['0 Rh+']}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        0 Rh-   
+                    </td>
+                    <td>
+                        {{krewPelna['0 Rh-']}}
+                    </td>
+                </tr>  
+            </table>
+
+        </div>
+        <a type="button" class="btn btn-secondary p-2 pl-4 pr-4 mx-auto" href="/panel">Powrót</a>
+    </div>
+</div>
+{% endblock %}

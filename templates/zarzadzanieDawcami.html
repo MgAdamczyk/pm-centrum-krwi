@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+
+    <div>
+        <a type="button" class="btn btn-secondary mb-3 p-2 pl-4 pr-4 mx-auto" href="/panel" onclick="">Powrót</a>
+    </div>
+
+    <h5>Zarejestruj nowego dawcę w systemie: <a type=button href="/dodajDawce" class="btn btn-danger">Zarejestruj dawcę</a></h5>
+    <form action="/zarzadzanieDawcami" method="POST">
+        <div class="form-group">
+            <label><b>Wyszukaj dawcę w systemie:</b></label><br>
+            <input type="text" name="wyszukaj" placeholder="Wprowadź pesel" required>
+            <button type="submit" class="btn btn-danger">Wyszukaj</button>
+        </div>
+    </form>
+
+    {% if czyPost %}
+    {% if not dawca %}
+    <div><h5>W systemie nie zarejestrowano dawcy o numerze PESEL: {{pesel}}</h5></div>
+    {% else %}
+    <div>
+        <table id="display-table">
+            <tr>
+                <th>PESEL</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Data urodzenia</th>
+                <th>Akcje</th>
+            </tr>
+                <tr>
+                    <td>
+                        {{dawca['pesel']}}
+                    </td>
+                    <td>
+                        {{dawca['imie']}}
+                    </td>
+                    <td>
+                        {{dawca['nazwisko']}}
+                    </td>
+                    <td>
+                        {{dawca['data_urodzenia']}}
+                    </td>
+                    <td>
+                        <a class="btn btn-danger mt-2 mb-2" href="/nowaRejestracja/{{dawca['pesel']}}" role="button">Nowa rejestracja</a>
+                        <a class="btn btn-secondary" href="/daneDawcy/{{dawca['pesel']}}" role="button">Dane dawcy</a>
+                    </td>
+                </tr>
+        </table>
+    </div>
+    {% endif %}
+    {% endif %}
+
+</div>
+{% endblock %}

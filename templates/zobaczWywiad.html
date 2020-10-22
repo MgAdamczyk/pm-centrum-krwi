@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 mx-auto">
+            <h6 class="border-text">Wynik badania hemoglobiny: {{hb}} [g/dl]</h6>
+            <form action="/zobaczWywiad/{{wywiad['id_wywiadu']}}" method="POST">
+
+                <div class="form-group">
+                    <label><b>Wzrost:</b></label><br>
+                    <input type="text" class="form-control" name="wzrost" value="{{wywiad['wzrost']}}" required>
+                    <label><b>Waga:</b></label><br>
+                    <input type="text" class="form-control" name="waga" value="{{wywiad['waga']}}" required>
+                    <label><b>Temperatura ciała:</b></label><br>
+                    <input type="text" class="form-control" name="temperatura" value="{{wywiad['temperatura']}}" required>
+                    <label><b>Ciśnienie krwi:</b></label><br>
+                    <input type="text" class="form-control" name="cisnienie" value="{{wywiad['cisnienie']}}" required>
+                    <label><b>Tętno:</b></label><br>
+                    <input type="text" class="form-control" name="tetno" value="{{wywiad['tetno']}}" required>
+                    <label><b>Ocena stanu węzłów chłonnych:</b></label><br>
+                    <input type="textarea" class="form-control" name="wezly_chlonne" value="{{wywiad['wezly_chlonne']}}" required>
+                    <label><b>Ocena wyglądu skóry w miejscu potencjalnego pobrania krwi:</b></label><br>
+                    <input type="textarea" class="form-control" name="skora" value="{{wywiad['skora']}}" required>
+                    <label><b>Dodatkowe uwagi:</b></label><br>
+                    <input type="textarea" class="form-control" name="uwagi" value="{{wywiad['uwagi']}}">
+                </div>
+
+                <div class="col-md-12">
+                    <h5>Czy wyrażasz zgodę na pobranie krwi od kandydata?</h5>
+                        {% if wywiad['akceptacja'] == "TAK" %}
+                        <label class="btn btn-danger"><input type="radio" name="akceptacja" value="TAK" checked> TAK</label>
+                        <label class="btn btn-secondary"><input type="radio" name="akceptacja" value="NIE" > NIE </label>
+                        {% else %}
+                        <label class="btn btn-danger"><input type="radio" name="akceptacja" value="TAK"> TAK</label>
+                        <label class="btn btn-secondary"><input type="radio" name="akceptacja" value="NIE" checked> NIE </label>
+                        {% endif %}
+                    </div><br>
+    
+                    <button type="submit" class="btn btn-danger mb-2 p-2" style="width: 100%;">Zapisz</button>
+                    <a type="button" class="btn btn-secondary mb-2 p-2" href="/panel" style="width: 100%;" onclick="">Wróć</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

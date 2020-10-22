@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+    <form action="/ankieta/{{idwizyty}}" method="POST">
+        <section class="container">
+            <div class="row">
+                <h3 class="col-12">Kwestionariusz dawcy krwi</h3>
+                
+                <label class="col-md-9 border-ankieta">1. Czy już oddawał/a Pan/Pani krew?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt1" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt1" value="NIE" > NIE </label>
+                </div>
+
+        
+                <label class="col-md-9 border-ankieta">2. Czy czuje się Pan/Pani obecnie zdrowy/a?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt2" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt2" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">3. Czy w ciągu ostatnich 7 dni przechodził/a Pan/Pani jakieś zabiegi stomatologiczne?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt3" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt3" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">4. Czy w ciągu ostatnich 4 tygodni chorował/a Pan/Pani lub pozostawał/a pod opieką lekarza albo miał/a gorączkę powyżej 38 °C?</label>
+                <div class="col-md-3">    
+                    <label class="btn btn-danger"><input type="radio" name="pyt4" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt4" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">5. Czy w ciągu ostatnich 4 tygodni przyjmował/a Pan/Pani lekarstwa (tabletki, zastrzyki, czopki)?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt5" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt5" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">6. Czy w ciągu ostatnich 3 dni przyjmował/a Pan/Pani lek, którego składnikiem jest kwas acetylosalicylowy (np. aspiryna)?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt6" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt6" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">7. Czy w ciągu ostatnich 4 tygodni przechodził/a/ Pan/Pani szczepienia?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt7" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt7" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">8. Czy zauważył Pan/Pani u siebie następujące objawy: nieuzasadniony spadek ciężaru ciała, nieuzasadnioną gorączkę lub powiększenie węzłów chłonnych?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt8" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt8" value="NIE" > NIE </label>
+                </div>
+
+                <br><h6 class="col-md-9">Czy choruje Pan/Pani bądź chorowała na jedno z niżej wymienionych schorzeń, ewentualnie odczuwa lub odczuwał/a niżej wymienione dolegliwości <b>(pytania 9 - 12)</b>?</h6>
+                <label class="col-md-9 border-ankieta">9. Choroby układu krążenia (nadciśnienie), dolegliwości ze strony serca, zawał serca, duszność, udar mózgu?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt9" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt9" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">10. Choroby skóry, wypryski / wysypka, uczulenia, katar sienny, astma?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt10" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt10" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">11. Cukrzyca, choroby krwi, przedłużenie krwawienia, choroby naczyń krwionośnych, choroby nerek, choroby przewodu pokarmowego, choroby płuc, choroby nerwowe, choroby tarczycy, padaczka, nowotwór?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt11" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt11" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">12. Kiła, rzeżączka, toksoplazmoza, bruceloza, gruźlica, mononukleoza zakaźna?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt12" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt12" value="NIE" > NIE </label>
+                </div>
+                
+                <label class="col-md-9 border-ankieta">13. Czy w ciągu ostatnich 6 miesięcy miał/a Pan/Pani wykonywaną gastroskopię, biopsję lub inne badanie diagnostyczne?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt13" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt13" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">14. Czy w ciągu ostatnich 6 miesięcy lub od czasu ostatniego oddania krwi chorował/a Pan/Pani ciężko albo przebył/a poważny zabieg operacyjny lub wypadek?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt14" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt14" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">15. Czy kiedykolwiek otrzymał/a Pan/Pani transfuzję krwi?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt15" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt15" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">16. Czy kiedykolwiek był/a Pan/Pani biorcą przeszczepu (np. rogówki lub innych tkanek)?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt16" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt16" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">17. Czy kiedykolwiek otrzymał/a Pan/Pani hormon wzrostu?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt17" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt17" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">18. Czy ktokolwiek z Pana/Pani rodziny cierpi lub cierpiał na chorobę Creutzfeldta-Jakoba?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt18" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt18" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">19. Czy w okresie od 1 stycznia 1980 roku do 31 grudnia 1996 roku przebywał/a Pan/Pani łącznie przez okres 6 miesięcy lub dłużej w Wielkiej Brytanii, Francji lub Irlandii?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt19" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt19" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">20. Czy w ciągu ostatnich 6 miesięcy przebywał/a Pan/Pani w krajach Afryki Środkowej?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt20" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt20" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">21. Czy mieszkał/a Pan/Pani lub przebywał/a czasowo na terenach endemicznego występowania malarii lub innych chorób tropikalnych?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt21" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt21" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">22. Czy chorował Pan/Pani na: malarię, inne choroby tropikalne?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt22" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt22" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">23. Czy w ciągu ostatnich 28 dni przebywał/a Pan/Pani na terenach, gdzie stwierdzono przypadki przeniesienia Wirusa Zachodniego Nilu na ludzi?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt23" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt23" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">24. Czy w ciągu ostatnich 6 miesięcy wykonywano u Pana/Pani: tatuaż, akupunkturę, depilację kosmetyczną, przekłucie uszu lub innych części ciała?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt24" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt24" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">25. Czy w ciągu ostatnich 6 miesięcy lub od czasu ostatniego oddania krwi miał/a Pan/Pani przypadkowy kontakt z krwią ludzką lub narzędziami zanieczyszczonymi krwią ludzką?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt25" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt25" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">26. Czy kiedykolwiek przechodził/a Pan/Pani żółtaczkę?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt26" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt26" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">27. Czy Pana/Pani partner życiowy lub seksualny w ciągu ostatnich 6 miesięcy przechodził żółtaczkę?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt27" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt27" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">28. Czy w ciągu ostatnich 12 miesięcy miał/a Pan/Pani kontakt z zakaźnie chorym?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt28" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt28" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">29. Czy był/a Pan/Pani narażona na ryzyko zakażenia?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt29" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt29" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">30. Czy w ciągu ostatnich 6 miesięcy przebywał/a na Pan/Pani w areszcie lub więzieniu?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt30" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt30" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">31. Czy kiedykolwiek zalecono Panu/Pani rezygnację z oddawania krwi?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt31" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt31" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">32. Czy wykonuje Pan/Pani niebezpieczną pracę (np. kierowca autobusu, nurek) lub ma niebezpieczne hobby?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt32" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt32" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">33. Czy jest Pani obecnie w ciąży lub była w ciąży w ciągu ostatnich 6 miesięcy?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt33" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt33" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">34. Czy teraz lub w ciągu ostatnich 3 dni ma / miała Pani miesiączkę?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt34" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt34" value="NIE" > NIE </label>
+                </div>
+
+                <label class="col-md-9 border-ankieta">35. Czy w latach 1965 - 1985 otrzymywała Pani zastrzyki hormonów w celu leczenia niepłodności?</label>
+                <div class="col-md-3">
+                    <label class="btn btn-danger"><input type="radio" name="pyt35" value="TAK" > TAK </label>
+                    <label class="btn btn-secondary"><input type="radio" name="pyt35" value="NIE" > NIE </label>
+                </div>
+
+                <button type="submit" class="btn btn-danger" style="width: 70%; margin-bottom: 7px;">Prześlij</button>
+                <a type="button" class="btn btn-secondary" href="/rejestracje" style="width: 70%; margin-bottom: 12px;">Anuluj</a>
+
+            </div>
+        </section>
+    </form>
+</div>
+{% endblock %}

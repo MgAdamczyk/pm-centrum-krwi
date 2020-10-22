@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 mx-auto">
+            <form action="/dodajBadanie/{{idWizyty}}" method="POST">
+
+                <h3>Wprowadź wyniki badań krwi dawcy</h3>
+
+                <div class="form-group border-text">
+                    <label><b>Grupa krwi dawcy:</b></label><br>
+                    
+                    {% if grupaKrwi != None %}
+                    <input type="text" class="form-control" name="grupa_krwi" value="{{grupaKrwi}}" readonly>
+                    {% else %}
+                    <select name="grupa_krwi" id="grupa_krwi">
+                        <option value="nie_oznaczono">Nie oznaczono</option>
+                        {% for gr in grupyKrwi %}
+                        <option value="{{gr['grupa_krwi']}}">{{gr['grupa_krwi']}}</option>
+                        {% endfor %}
+                    </select>
+                    {% endif %}
+                </div>
+    
+                {% if not czyWyniki %}
+                <div class="form-group border-text">
+                    <label><b>Poziom hemoglobiny:</b></label><br>
+                    <input type="text" class="form-control" name="hb" placeholder="Hb [g/dL]" required>
+                </div>
+                {% else %}
+                <div class="form-group border-text">
+                    <label><b>Poziom hemoglobiny [g/dl]:</b></label><br>
+                    <input type="text" class="form-control" name="hb" value="{{wyniki['hb']}}">
+                </div>
+                {% endif %}
+                
+                
+                {% if czyWywiad and akceptacja != "NIE"%}
+                {% if wyniki['id_morfologii'] != None %}
+                <h4>Parametry morfologiczne krwi</h4>
+                <div class="form-group border-text">
+                    <label><b>Hematokryt [%]:</b></label><br>
+                    <input type="text" class="form-control" name="ht" value="{{wyniki['ht']}}">
+                    <label><b>Erytrocyty [mln/ul]:</b></label><br>
+                    <input type="text" class="form-control" name="rbc" value="{{wyniki['rbc']}}"> 
+                    <label><b>Leukocyty [tys/ul]:</b></label><br>
+                    <input type="text" class="form-control" name="wbc" value="{{wyniki['wbc']}}">
+                    <label><b>Płytki krwi [tys/ul]:</b></label><br>
+                    <input type="text" class="form-control" name="plt" value="{{wyniki['plt']}}">
+                    <label><b>Średnia zawartość hemoglobiny [pg]:</b></label><br>
+                    <input type="text" class="form-control" name="mch" value="{{wyniki['mch']}}">
+                    <label><b>Średnie stężenie hemoglobiny [g/dl]:</b></label><br>
+                    <input type="text" class="form-control" name="mchc" value="{{wyniki['mchc']}}">
+                    <label><b>Średnia objętość krwinek czerwonych [fl]:</b></label><br>
+                    <input type="text" class="form-control" name="mcv" value="{{wyniki['mcv']}}">
+                    <label><b>Neutrofile [%]:</b></label><br>
+                    <input type="text" class="form-control" name="ne" value="{{wyniki['ne']}}">
+                    <label><b>Eozynofile [%]:</b></label><br>
+                    <input type="text" class="form-control" name="eo" value="{{wyniki['eo']}}">
+                    <label><b>Bazofile [%]:</b></label><br>
+                    <input type="text" class="form-control" name="ba" value="{{wyniki['ba']}}">
+                    <label><b>Limfocyty [%]:</b></label><br>
+                    <input type="text" class="form-control" name="ly" value="{{wyniki['ly']}}">
+                    <label><b>Monocyty [%]:</b></label><br>
+                    <input type="text" class="form-control" name="mo" value="{{wyniki['mo']}}">
+                    <label><b>ALAT [U/L]:</b></label><br>
+                    <input type="text" class="form-control" name="alat" value="{{wyniki['alat']}}">
+                </div>
+
+                {% else %}
+
+                <h4>Parametry morfologiczne krwi</h4>
+                <div class="form-group border-text">
+                    <label><b>Hematokryt:</b></label><br>
+                    <input type="text" class="form-control" name="ht" placeholder="Ht %">
+                    <label><b>Erytrocyty:</b></label><br>
+                    <input type="text" class="form-control" name="rbc" placeholder="Krwinki czerwone [mln/ul]">
+                    <label><b>Leukocyty:</b></label><br>
+                    <input type="text" class="form-control" name="wbc" placeholder="Krwinki białe [tys/ul]">
+                    <label><b>Płytki krwi:</b></label><br>
+                    <input type="text" class="form-control" name="plt" placeholder="Płytki krwi [tys/ul]">
+                    <label><b>Średnia zawartość hemoglobiny:</b></label><br>
+                    <input type="text" class="form-control" name="mch" placeholder="MCH [pg]">
+                    <label><b>Średnie stężenie hemoglobiny:</b></label><br>
+                    <input type="text" class="form-control" name="mchc" placeholder="MCHC [g/dl]">
+                    <label><b>Średnia objętość krwinek czerwonych:</b></label><br>
+                    <input type="text" class="form-control" name="mcv" placeholder="MCV [fl]">
+                    <label><b>Neutrofile:</b></label><br>
+                    <input type="text" class="form-control" name="ne" placeholder="NE %">
+                    <label><b>Eozynofile:</b></label><br>
+                    <input type="text" class="form-control" name="eo" placeholder="EO %">
+                    <label><b>Bazofile:</b></label><br>
+                    <input type="text" class="form-control" name="ba" placeholder="BA %">
+                    <label><b>Limfocyty:</b></label><br>
+                    <input type="text" class="form-control" name="ly" placeholder="LY %">
+                    <label><b>Monocyty:</b></label><br>
+                    <input type="text" class="form-control" name="mo" placeholder="MO %">
+                    <label><b>ALAT:</b></label><br>
+                    <input type="text" class="form-control" name="alat" placeholder="ALAT [U/L]">
+                </div>
+
+                {% endif %}
+
+                {% if wyniki['id_wirusologii'] != None %}
+                <h4>Wyniki badań wirusologicznych</h4>
+                <div class="form-group border-text">
+                    <label><b>Antygen HBs:</b></label><br>
+                    <input type="text" class="form-control" name="hbs" value="{{wyniki['hbs']}}">
+                    <label><b>Przeciwciała anty-HIV:</b></label><br>
+                    <input type="text" class="form-control" name="hiv" value="{{wyniki['hiv']}}">
+                    <label><b>Przeciwciała anty-HCV:</b></label><br>
+                    <input type="text" class="form-control" name="hcv" value="{{wyniki['hcv']}}">
+                    <label><b>Oznaczenie RNA-HCV:</b></label><br>
+                    <input type="text" class="form-control" name="rna_hcv" value="{{wyniki['rna_hcv']}}">
+                    <label><b>Oznaczenie RNA-HIV:</b></label><br>
+                    <input type="text" class="form-control" name="rna_hiv" value="{{wyniki['rna_hiv']}}">
+                    <label><b>Oznaczenie DNA-HBV:</b></label><br>
+                    <input type="text" class="form-control" name="dna_hbv" value="{{wyniki['dna_hbv']}}">
+                    <label><b>Markery zakażenia krętkiem kiły:</b></label><br>
+                    <input type="text" class="form-control" name="kila" value="{{wyniki['kila']}}">
+                </div>
+
+                {% else %}
+
+                <h4>Wyniki badań wirusologicznych</h4>
+                <div class="form-group border-text">
+                    <label><b>Antygen HBs:</b></label><br>
+                    <input type="text" class="form-control" name="hbs" placeholder="Hbs">
+                    <label><b>Przeciwciała anty-HIV:</b></label><br>
+                    <input type="text" class="form-control" name="hiv" placeholder="anty-HIV">
+                    <label><b>Przeciwciała anty-HCV:</b></label><br>
+                    <input type="text" class="form-control" name="hcv" placeholder="anty-HCV">
+                    <label><b>Oznaczenie RNA-HCV:</b></label><br>
+                    <input type="text" class="form-control" name="rna_hcv" placeholder="RNA HCV">
+                    <label><b>Oznaczenie RNA-HIV:</b></label><br>
+                    <input type="text" class="form-control" name="rna_hiv" placeholder="RNA HIV">
+                    <label><b>Oznaczenie DNA-HBV:</b></label><br>
+                    <input type="text" class="form-control" name="dna_hbv" placeholder="DNA HBV">
+                    <label><b>Markery zakażenia krętkiem kiły:</b></label><br>
+                    <input type="text" class="form-control" name="kila" placeholder="Krętki kiły">
+                </div>
+
+                {% endif %}
+    
+                {% endif %}
+    
+                <button type="submit" class="btn btn-danger mb-2 p-2" style="width: 100%;">Zapisz</button>
+                <a type="button" class="btn btn-secondary mb-2 p-2" href="/rejestracjePielegniarki" style="width: 100%;" onclick="">Anuluj</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

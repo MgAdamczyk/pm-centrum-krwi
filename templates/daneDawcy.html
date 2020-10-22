@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="/daneDawcy/{{dane['pesel']}}" method="POST">
+                <h3>Dane osobowe i teleadresowe dawcy {{pesel}}</h3>
+                
+                <div class="form-group">
+                    <label>PESEL:</label>
+                    <input type="text" class="form-control" name="pesel" value="{{dane['pesel']}}" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label>Imię:</label>
+                    <input type="text" class="form-control" name="imie" value="{{dane['imie']}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Drugie imię:</label>
+                    <input type="text" class="form-control" name="imie2" value="{{dane['drugie_imie']}}">
+                </div>
+
+                <div class="form-group">
+                    <label>Nazwisko:</label>
+                    <input type="text" class="form-control" name="nazwisko" value="{{dane['nazwisko']}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Nazwisko rodowe:</label>
+                    <input type="text" class="form-control" name="rodowe" value="{{dane['nazwisko_rodowe']}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="plec">Płeć:</label>
+                        <select name="plec" id="plec">
+                            {% if dane['plec'] == "K" %}
+                            <option value="K" selected>K</option>
+                            <option value="M">M</option>
+                            {% else %}
+                            <option value="K">K</option>
+                            <option value="M" selected>M</option>
+                            {% endif %}
+                        </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Data urodzenia:</label>
+                    <input type="date" class="form-control" name="data_ur" value="{{dane['data_urodzenia']}}" required> 
+                </div>
+
+                <div class="form-group">
+                    <label>Obywatelstwo:</label>
+                    <input type="text" class="form-control" name="obywatel" value="{{dane['obywatelstwo']}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Adres:</label>
+                    <input type="text" class="form-control" name="adres" value="{{dane['adres']}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Telefon kontaktowy:</label>
+                    <input type="tel" class="form-control" name="tel" value="{{dane['telefon']}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" class="form-control" name="email" value="{{dane['email']}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Twoja grupa krwi:</label>
+                    <input type="text" class="form-control" name="gr_krwi" value="{{dane['gr_krwi']}}" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label>Numer legitymacji Honorowego Dawcy Krwi (jeśli przyznano):</label>
+                    <input type="text" class="form-control" name="legitymacja" value="{{dane['nr_legitymacji']}}">
+                </div>
+
+                <div class="form-group">
+                    <a type="button" class="btn btn-secondary" href="/zarzadzanieDawcami" onclick="">Anuluj</a>
+                    <button type="submit" class="btn btn-danger" onclick="">Zapisz</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

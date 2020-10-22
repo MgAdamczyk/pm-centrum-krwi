@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+    <div class="announcement">{{info}}</div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="/dodajDawce" method="POST">
+                <h3>Rejestracja nowego krwiodawcy w systemie</h3>
+                
+                <div class="form-group">
+                    <label>PESEL:</label>
+                    <input type="text" class="form-control" name="pesel" placeholder="11-cyfrowy numer pesel" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Hasło:</label>
+                    <input type="password" class="form-control" name="haslo" placeholder="Wprowadź hasło" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Imię:</label>
+                    <input type="text" class="form-control" name="imie" placeholder="Imię" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Drugie imię:</label>
+                    <input type="text" class="form-control" name="imie2" placeholder="Drugie imię">
+                </div>
+
+                <div class="form-group">
+                    <label>Nazwisko:</label>
+                    <input type="text" class="form-control" name="nazwisko" placeholder="Nazwisko" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Nazwisko rodowe:</label>
+                    <input type="text" class="form-control" name="rodowe" placeholder="Nazwisko rodowe"required>
+                </div>
+
+                <div class="form-group">
+                    <label for="plec">Wybierz płeć:</label>
+                        <select name="plec" id="plec">
+                            <option value="K">K</option>
+                            <option value="M">M</option>
+                        </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Data urodzenia:</label>
+                    <input type="date" class="form-control" name="data_ur" placeholder="rrrr-mm-dd" required> 
+                </div>
+
+                <div class="form-group">
+                    <label>Obywatelstwo:</label>
+                    <input type="text" class="form-control" name="obywatel" placeholder="Obywatelstwo" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Adres:</label>
+                    <input type="text" class="form-control" name="adres" placeholder="Wpisz swój adres" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Telefon kontaktowy:</label>
+                    <input type="tel" class="form-control" name="tel" placeholder="123 456 789" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" class="form-control" name="email" placeholder="Wpisz swój email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Numer legitymacji Honorowego Dawcy Krwi (jeśli przyznano):</label>
+                    <input type="text" class="form-control" name="legitymacja" placeholder="Nr legitymacji">
+                </div>
+
+                <div class="form-group">
+                    <a type="button" class="btn btn-secondary" href="/zarzadzanieDawcami" onclick="">Anuluj</a>
+                    <button type="submit" class="btn btn-danger" onclick="">Zarejestruj</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

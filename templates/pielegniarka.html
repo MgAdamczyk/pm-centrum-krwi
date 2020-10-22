@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Centrum Krwi - {{session['login']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="margin-under-nav padding-all">
+    <div>
+        <h5>Sprawdź ustawienia konta <a class="btn btn-secondary" href="/ustawieniaPielegniarki" role="button">Ustawienia</a></h5><br>
+    </div>
+    <section class="container">
+        <div class="row">
+            <div class="col-12">
+                    <h5>Zarządzaj krwiodawcami w systemie i rejestracjami w Twojej placówce. Wybierz odpowiednią akcję:</h5>
+                    <a class="btn btn-danger m-3 p-3" href="/rejestracjePielegniarki" role="button">Zarządzaj wizytami</a>
+                    <a class="btn btn-danger m-3 p-3" href="/zarzadzanieDawcami" role="button">Zarządzaj dawcami</a>
+                    <a class="btn btn-danger m-3 p-3" href="/zasobyKrwi" role="button">Sprawdź zasoby krwi</a>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
